@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Matching Pairs Game, finish the matching to get the magic password to your next journey!!!</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+        }
+        #game-container {
+            display: grid;
+            grid-template-columns: repeat(4, 150px); /* 4 columns */
+            grid-template-rows: repeat(5, 150px); /* 5 rows */
+            gap: 10px;
+            justify-content: center;
+        }
+        .card {
+            width: 150px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+            transition: background-color 0.3s;
+        }
+        .card img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .flipped {
+            background-color: white;
+        }
+        #magic-word {
+        position: absolute;
+        top: 100;
+        left: 50%;
+        transform: translateX(-50%);
+        display: none;
+        padding: 20px;
+        font-size: 100px;
+        font-weight: bold;
+        color: green;
+        background-color: white;
+        border: 1px solid green;
+        border-bottom: none;
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <h1>Matching Pairs Game</h1>
+    <p>Click on two cards to find matching pairs of cat and dog images!</p>
+    <div id="game-container">
+         <!-- Organize images in a 5x4 grid -->
+         <div class="card" id="1" onclick="revealCard(this)"><img src="cat.jpg" alt="Cat"></div>
+         <div class="card" id="2" onclick="revealCard(this)"><img src="cat1.jpg" alt="Cat1"></div>
+         <div class="card" id="3" onclick="revealCard(this)"><img src="cat2.jpg" alt="Cat2"></div>
+         <div class="card" id="4" onclick="revealCard(this)"><img src="dog.jpg" alt="Dog"></div>
+         <div class="card" id="5" onclick="revealCard(this)"><img src="dog1.jpg" alt="Dog1"></div>
+         <div class="card" id="6" onclick="revealCard(this)"><img src="dog2.jpg" alt="Dog2"></div>
+         <div class="card" id="7" onclick="revealCard(this)"><img src="bird.jpg" alt="Bird"></div>
+         <div class="card" id="8" onclick="revealCard(this)"><img src="fish1.jpg" alt="Fish1"></div>
+         <div class="card" id="9" onclick="revealCard(this)"><img src="fish2.jpg" alt="Fish2"></div>
+         <div class="card" id="10" onclick="revealCard(this)"><img src="cat.jpg" alt="Cat"></div>
+         <div class="card" id="11" onclick="revealCard(this)"><img src="cat1.jpg" alt="Cat1"></div>
+         <div class="card" id="12" onclick="revealCard(this)"><img src="cat2.jpg" alt="Cat2"></div>
+         <div class="card" id="13" onclick="revealCard(this)"><img src="dog.jpg" alt="Dog"></div>
+         <div class="card" id="14" onclick="revealCard(this)"><img src="dog1.jpg" alt="Dog1"></div>
+         <div class="card" id="15" onclick="revealCard(this)"><img src="dog2.jpg" alt="Dog2"></div>
+         <div class="card" id="16" onclick="revealCard(this)"><img src="bird.jpg" alt="Bird"></div>
+         <div class="card" id="17" onclick="revealCard(this)"><img src="fish.jpg" alt="Fish"></div>
+         <div class="card" id="18" onclick="revealCard(this)"><img src="fish1.jpg" alt="Fish1"></div>
+         <div class="card" id="19" onclick="revealCard(this)"><img src="fish.jpg" alt="Fish"></div>
+         <div class="card" id="20" onclick="revealCard(this)"><img src="fish2.jpg" alt="Fish2"></div>
+         <!-- ... (card elements) ... -->
+    </div>
+    <div id="magic-word">Magic Word: Cat</div>
+    <script>
+        let firstCard = null;
+        let remainingPairs = 10; // Total pairs of cards
+    
+        function revealCard(card) {
+            if (!firstCard) {
+                firstCard = card;
+            } else {
+                if (firstCard.querySelector("img").alt === card.querySelector("img").alt &&
+                    firstCard.id !== card.id)  {
+                    firstCard.style.display = "none";
+                    card.style.display = "none";
+                    remainingPairs--;
+
+                    if (remainingPairs === 0) {
+                        document.getElementById("magic-word").style.display = "block";
+                    }
+                }
+                firstCard = card;
+            }
+        }
+    </script>
+</body>
+</html>
